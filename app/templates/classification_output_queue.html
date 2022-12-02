@@ -16,7 +16,7 @@
         <div class="col">
             <div class="card">
                 <img class="large-front-thumbnail"
-                     src="{{ url_for('static', filename='imagenet_subset/'+image_id) }} "
+                     src="{{ url_for('static', filename= ('imagenet_subset/' if selector == 1 else 'imagenet_subset_uploaded/') + image_id) }}"
                      alt={{ image_id }}/>
             </div>
         </div>
@@ -31,8 +31,11 @@
                     </div>
                 </div>
 
+               
 
                 <a class="btn btn-dark" href="/classifications" role="button">Back</a>
+
+
             </div>
         </div>
     </div>
