@@ -20,6 +20,9 @@ def classifications():
     if form.validate_on_submit():  # POST
         image_id = form.image.data
         model_id = form.model.data
+
+        # print("Image id: {}".format(image_id))
+        # print("Model id: {}".format(model_id))
         print("Image id: {}".format(image_id))
         print("Model id: {}".format(model_id))
         
