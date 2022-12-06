@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <h4>
+        Image:
+    </h4>
+    <p>
+        {{ form.image }}
+    </p>
+    <button type="submit" class="btn btn-dark mb-2">Submit</button>
+</form>
+
+<div class="row">
+    <img class="large-front-thumbnail" src="{{ url_for('static', filename= ('imagenet_subset/') + image_id) }}"/>
+    <div class="column">
+    </div>
+    <div class="column">
+        <img id = "result" src="{{ 'data:image/jpg;base64,'+base64img }}"  height="300">
+    </div>
+  </div>
+
+    
+{% endblock %}
