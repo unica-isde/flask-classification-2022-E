@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <script>
+
+    
+    $(document).ready(function(){
+
+      $("p").click(function(){
+        var imageValue = document.getElementById("image").value
+        document.getElementById("img1").src=("/static/imagenet_subset/"+imageValue)
+      });
+    });
+
+    function SumbitData() {
+
+        var form = $("#formId");
+
+        $.ajax({
+        type: "POST",
+        url: "/transformations",
+        data: form.serialize(),
+        contentType: "application/x-www-form-urlencoded",
+        dataType: 'text',
+        success: function (response, status) {
+            document.getElementById("result").src = "data:image/jpg;base64,"+response;
+        },
+        error: function(xhr, textStatus, error) {
+            console.log(xhr.responseText);
+            console.log(xhr.statusText);
+            console.log(textStatus);
+            console.log(error);
+        }
+        });
+
+    }
+
+    
+
+    function outputUpdate(data,selector) {
+        document.getElementById(selector).value = data;
+    }
+
+
+    </script>
+
+    <h1>Select Model and Image</h1>
+    <form id='formId' > 
+        {{ form.hidden_tag() }}
+        <h4>
+            Image:
+        </h4>
+        <p>
+            {{ form.image }}
+        </p>
+
+        <h4>
+            Brightness:
+        </h4>
+        <p> 
+            {{ form.brightness(value=1,min=0, max=10, oninput="outputUpdate(value,'bOut')") }}
+            <output id="bOut">{{ form.brightness.data }}</output>
+        </p>
+        <h4>
+            Contrast:
+        </h4>
+        <p> 
+            {{ form.contrast(value = 1 ,min=-50, max=50, oninput="outputUpdate(value,'cOut')") }}
+            <output id="cOut">{{ form.contrast.data }}</output>
+        </p>
+        <h4>
+            Sharpness:
+        </h4>
+        <p> 
+            {{ form.sharpness(value=1,min=-50, max=50, oninput="outputUpdate(value,'sOut')") }}
+            <output id="sOut">{{ form.sharpness.data }}</output>
+        </p>
+        <h4>
+            Color:
+        </h4>
+        <p> 
+            {{ form.color(value =1,min=-50, max=50, oninput="outputUpdate(value,'colOut')") }}
+            <output id="colOut">{{ form.color.data }}</output>
+        </p>
+        
+    </form>
+
+    <div class="row">
+        <div class="column">
+            <img id = "img1" src="/static/imagenet_subset/n01440764_tench.JPEG" alt="Image Transformation" height="300">
+        </div>
+        <div class="column">
+        </div>
+        <div class="column">
+            <img id = "result" src=""  height="300">
+        </div>
+      </div>
+
+    
+
+    <br>
+    <br>
+    
+    <button type="submit" class="btn btn-dark mb-2" onclick="SumbitData();">Submit</button>
+
+    <style>
+        * {
+          box-sizing: border-box;
+        }
+        
+        .column {
+          float: left;
+          width: 33.33%;
+          padding: 5px;
+        }
+        .row::after {
+          content: "";
+          clear: both;
+          display: table;
+        }
+    </style>
+    
+
+
+
+
+    
+{% endblock %}
