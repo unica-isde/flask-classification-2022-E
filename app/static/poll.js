@@ -9,6 +9,7 @@
  * The server is supposed to response when a change has been made on data.
  */
 function update(jobId) {
+    console.log(`/classifications/${jobId}`)
     $.ajax({
         url: `/classifications/${jobId}`,
         success: function (data) {
