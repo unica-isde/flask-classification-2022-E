@@ -35,6 +35,21 @@
 
                 <a class="btn btn-dark" href="/classifications" role="button">Back</a>
 
+                <br>
+
+
+                <form action="/downloadPlotPng" method="POST" novalidate>
+                   <input type="hidden" id="jobid" name="jobid" value={{ jobID }} >
+                   <button type="submit" class="btn btn-dark mb-2">Download plot</button>
+                </form>
+
+                <br>
+
+                <form action="/downloadJson" method="POST" novalidate>
+                    <input type="hidden" id="jobid" name="jobid" value={{ jobID }} >
+                    <button type="submit" class="btn btn-dark mb-2">Download json</button>
+                </form>
+            
 
             </div>
         </div>
