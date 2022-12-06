@@ -47,11 +47,15 @@ def get_model(model_id):
         raise ImportError
 
 
-def classify_image(model_id, img_id):
+def classify_image(model_id, img_id, uploaded=False):
     """Returns the top-5 classification score output from the
     model specified in model_id when it is fed with the
     image corresponding to img_id."""
-    img = fetch_image(img_id)
+
+
+    img = fetch_image(img_id) if(uploaded == False)  else Image.open(img_id)
+        
+
     model = get_model(model_id)
     model.eval()
     transform = transforms.Compose((
