@@ -1,7 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
 <!doctype html>
     <title>Upload new File</title>
     <h1>Upload new File</h1>
     <form method=post enctype=multipart/form-data>
+      {{ form.hidden_tag() }}
+        <h4>
+            Model:
+        </h4>
+        <p>
+            {{ form.model }}
+        </p>
       <input type=file name=file>
       <input type=submit value=Upload>
     </form>
+
+
+{% endblock %}
