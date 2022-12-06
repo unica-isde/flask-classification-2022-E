@@ -20,8 +20,11 @@ def classifications():
     if form.validate_on_submit():  # POST
         image_id = form.image.data
         model_id = form.model.data
+
         # print("Image id: {}".format(image_id))
         # print("Model id: {}".format(model_id))
+        print("Image id: {}".format(image_id))
+        print("Model id: {}".format(model_id))
         
 
         redis_url = Configuration.REDIS_URL
@@ -36,7 +39,7 @@ def classifications():
 
         # returns the image classification output from the specified model
         # return render_template('classification_output.html', image_id=image_id, results=result_dict)
-        return render_template("classification_output_queue.html", image_id=image_id, jobID=task.get_id())
+        return render_template("classification_output_queue.html",selector = 1, image_id=image_id,jobID=task.get_id())
 
     # otherwise, it is a get request and should return the
     # image and model selector
