@@ -40,14 +40,14 @@
 
                 <form action="/downloadPlotPng" method="POST" novalidate>
                    <input type="hidden" id="jobid" name="jobid" value={{ jobID }} >
-                   <button type="submit" class="btn btn-dark mb-2">Download plot</button>
+                   <button hidden style="width:600px" id="btnplot" type="submit" class="btn btn-dark">Download plot</button>
                 </form>
 
                 <br>
 
                 <form action="/downloadJson" method="POST" novalidate>
                     <input type="hidden" id="jobid" name="jobid" value={{ jobID }} >
-                    <button type="submit" class="btn btn-dark mb-2">Download json</button>
+                    <button hidden style="width:600px" id="btnjson" type="submit" class="btn btn-dark">Download json</button>
                 </form>
             
 

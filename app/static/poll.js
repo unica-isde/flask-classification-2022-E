@@ -18,6 +18,10 @@ function update(jobId) {
                 case "finished":
                     $('#spinner').hide();
                     $('#waitText').text("");
+
+                    document.getElementById("btnplot").hidden=false
+                    document.getElementById("btnjson").hidden=false
+
                     makeGraph(data['data']);
                     break;
                 case "started":
