@@ -13,12 +13,11 @@ import os
 from werkzeug.utils import secure_filename
 
 
-DEBUG = 1
 
 config = Configuration()
 
 UPLOAD_FOLDER = 'app/static/imagenet_subset_uploaded'
-ALLOWED_EXTENSIONS = {'jpg', 'jpeg'}
+ALLOWED_EXTENSIONS = {'jpg', 'jpeg','png'}
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -38,20 +37,22 @@ def classifications_by_uploading():
         if 'file' not in request.files:
             flash('No file part')
             return redirect(request.url)
+        
         file = request.files['file']
         # If the user does not select a file, the browser submits an
         # empty file without a filename.
         if file.filename == '':
             flash('No selected file')
             return redirect(request.url)
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            absolute_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            print("apth : {}".format(absolute_path))
-            file.save(absolute_path)
+        
+        if not allowed_file(file.filename):
+            return redirect(request.url)
+        
+        filename = secure_filename(file.filename)
+        absolute_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        print("apth : {}".format(absolute_path))
+        file.save(absolute_path)
 
-        if (DEBUG == 1):
-            print("[*] IMAGENAME {}".format(filename))
         # new part 23/11/22
         redis_url = Configuration.REDIS_URL
         redis_conn = redis.from_url(redis_url)
