@@ -41,13 +41,3 @@ def downloadJson():
                         mimetype="text/json",
                         headers={"Content-disposition":
                         "attachment; filename={}.json".format(jobId)})
-        
-        
-
-    
-    elif request.method == 'GET':
-        return '''
-        <html><body>
-        <h1> omage </h1>
-        </body></html>
-        '''

@@ -50,10 +50,8 @@ def classifications_by_uploading():
         
         filename = secure_filename(file.filename)
         absolute_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        print("apth : {}".format(absolute_path))
         file.save(absolute_path)
 
-        # new part 23/11/22
         redis_url = Configuration.REDIS_URL
         redis_conn = redis.from_url(redis_url)
 
@@ -65,8 +63,6 @@ def classifications_by_uploading():
                 "uploaded":True
             })
             task = q.enqueue_job(job)
-
-        print("JOb id {}".format(task.get_id()))
         return render_template("classification_output_queue.html",selector=0, image_id=filename,jobID=task.get_id())
 
 

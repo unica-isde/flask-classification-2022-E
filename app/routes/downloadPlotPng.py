@@ -60,17 +60,6 @@ def downloadPlotPng():
         
 
         stripped = os.path.relpath(app.config['SAVEPRIV'], "app/")
-
-        print("{}".format(stripped))
         
         return send_from_directory(stripped, filename,as_attachment=True)
         
-        
-
-    
-    elif request.method == 'GET':
-        return '''
-        <html><body>
-        <h1> omage </h1>
-        </body></html>
-        '''
