@@ -6,3 +6,5 @@ Flask
 redis
 rq
 flask-wtf
+matplotlib
+cv2

@@ -9,6 +9,7 @@
  * The server is supposed to response when a change has been made on data.
  */
 function update(jobId) {
+    console.log(`/classifications/${jobId}`)
     $.ajax({
         url: `/classifications/${jobId}`,
         success: function (data) {
@@ -17,6 +18,10 @@ function update(jobId) {
                 case "finished":
                     $('#spinner').hide();
                     $('#waitText').text("");
+
+                    document.getElementById("btnplot").hidden=false
+                    document.getElementById("btnjson").hidden=false
+
                     makeGraph(data['data']);
                     break;
                 case "started":

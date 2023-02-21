@@ -30,10 +30,7 @@ def classifications():
                 "img_id": image_id
             })
             task = q.enqueue_job(job)
-
-        # returns the image classification output from the specified model
-        # return render_template('classification_output.html', image_id=image_id, results=result_dict)
-        return render_template("classification_output_queue.html", image_id=image_id, jobID=task.get_id())
+        return render_template("classification_output_queue.html",selector = 1, image_id=image_id,jobID=task.get_id())
 
     # otherwise, it is a get request and should return the
     # image and model selector
