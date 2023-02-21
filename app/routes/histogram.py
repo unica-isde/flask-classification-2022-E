@@ -29,6 +29,7 @@ def makeImage(image_id):
     counts, bins = np.histogram(vals, range(257))
     plt.bar(bins[:-1] - 0.5, counts, width=1, edgecolor='none')
     plt.xlim([-0.5, 255.5])
+    plt.ylim([0, 5000])
 
     my_stringIObytes = io.BytesIO()
     plt.savefig(my_stringIObytes, format='jpg')
